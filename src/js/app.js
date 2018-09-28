@@ -15,26 +15,30 @@ const showUserDetails = () => {
     </div>
     <div class="show_details">
       <p class="show_name">
-      <span class="name_head">Name : </span>
       <span class="name_value">${this.name}</span>
       </p>
-      <p class="show_follower">
+      <p class="show_repos user_info">
+        <span class="repos_head">Repositories : </span>
+        <span class="repo_value">${this.public_repos}</span>
+      </p>
+      <p class="show_follower user_info">
         <span class="follower_head">Follower : </span>
         <span class="follower_value">${this.followers}</span>
       </p>
-      <p class="show_following">
+      <p class="show_following user_info">
         <span class="following_head">Following : </span>
         <span class="following_value">${this.following}</span>
       </p>
-      <p class="show_bio">
+      <p class="show_bio user_info">
         <span class="bio_head">Bio : </span>
         <span class="bio_value">${this.bio}</span>
       </p>
     </div>    
     `;
+
     div.classList.add("details_block");
-    div.innerHTML = details;
-    fragment.appendChild(div);
+    div.innerHTML = details;    fragment.appendChild(div);
+
     userBlock.innerHTML = '';
     userBlock.appendChild(fragment);
   }

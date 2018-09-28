@@ -2,6 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -55,7 +56,7 @@ img {
 .wrapper {
   max-width: 960px;
   width: 100%;
-  margin: 0 auto; }
+  margin: 2rem auto; }
 
 .center {
   text-align: center; }
@@ -66,7 +67,57 @@ img {
 .color-white {
   color: #fff; }
 
+body {
+  font-family: 'Open Sans', sans-serif; }
+
 h1 {
-  font-size: 4rem; }
+  font-size: 4rem;
+  font-weight: 300; }
+
+.user_name {
+  display: inline-block;
+  margin: 0 1rem;
+  font-size: 1.7rem;
+  vertical-align: bottom;
+  color: #4c3831; }
+
+.user_value {
+  border: none;
+  border-bottom: 2px solid #9E9E9E;
+  vertical-align: top;
+  line-height: 1.5rem;
+  width: 250px;
+  font-size: 1.2rem;
+  color: #005f56;
+  padding-left: 1rem; }
+  .user_value:focus {
+    outline: none;
+    border-bottom: 2px solid #353535; }
+
+.details_block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 500px;
+  margin: 0 auto;
+  box-shadow: 7px 6px 14px 3px #d2cfcfd1;
+  background-color: white;
+  border-radius: 3px; }
+  .details_block:hover {
+    box-shadow: 7px 6px 14px 3px #d6d2d2d1; }
+
+.user_image {
+  height: 200px; }
+  .user_image img {
+    width: 200px; }
+
+.show_name {
+  margin: 1rem 0;
+  font-size: 1.5rem;
+  font-variant: small-caps;
+  color: #33435a; }
+
+.user_info {
+  font-size: 1.2rem;
+  margin: 0.5rem 0; }
 
 /*# sourceMappingURL=style.css.map */
