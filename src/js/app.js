@@ -1,15 +1,14 @@
 let user;
 const userName = document.getElementById('user-value');
 const userBlock = document.querySelector('.show_user_details');
-const reposBlock  = document.querySelector('.repos_block');
-
+const main  = document.querySelector('main');
+let repoStr = '';
 
 // function for appending details 
 const showUserDetails = () => {
   user.userDetails = function() {
     const fragment = document.createDocumentFragment();
     const detailsDiv = document.createElement("div");
-    const reposDiv = document.createElement("div");
 
     let details = `
     <div class="user_image">
@@ -38,22 +37,37 @@ const showUserDetails = () => {
     </div>    
     `;
 
-    // let reposElm = `
-    // <h3 class="repos_header">User Repositories</h3>
-    // <div class=""
-    // `
-
     detailsDiv.classList.add("details_block");
     detailsDiv.innerHTML = details;
-    reposDiv.innerHTML = reposElm;
 
     fragment.appendChild(detailsDiv);
-    fragment.appendChild(reposDiv);
 
     userBlock.innerHTML = '';
     userBlock.appendChild(fragment);
   }
   user.userDetails();
+}
+
+//function for showRepo
+const showRepo = () => {
+  user.showRepo = function() {
+    let fragment = document.createDocumentFragment();
+    let repoDiv = document.createElement("div");
+
+    let str = `
+    <h3 class="repo_head center">User Repositories</h3>
+    <ul class="repos_container">
+      ${repoStr}
+    </ul>
+    `
+    repoDiv.classList.add("repos_block");
+    repoDiv.innerHTML = str;
+    
+    fragment.appendChild(repoDiv);
+
+    main.appendChild(fragment);
+  }
+  user.showRepo();
 }
 
 //function for fetchData
@@ -65,30 +79,45 @@ function getData(response) {
   } else {
     return response.json().then(res => {
       user = res;
-      let repos = fetch(`https://api.github.com/users/${userName.value}/repos?per_page=100`).then(response => {
-      response.json().then(res => {
-        user.repos = [];
-        res.forEach(repo => {
-          let repoDetails = {
-            name : repo.name,
-            url : repo.html_url
-          };
-          user.repos.push(repoDetails);
-        }); 
-      });
-    }).catch(e => {
+      let repos = fetch(`https://api.github.com/users/${userName.value}/repos?per_page=100`).
+      then(response => {
+        response.json().then(res => {
+          user.repos = [];
+          res.forEach(repo => {
+            let repoDetails = {
+              name : repo.name,
+              url : repo.html_url
+            };
+            user.repos.push(repoDetails);
+          });
+          (function(){
+            user.repos.forEach((repo, i) => {
+              repoStr += `
+              <li class="repo_item">
+                <span class="repo_no">${i+1}</span> - <a href="${repo.url}">${repo.name}</a>  
+              </li>
+              `
+            });
+            showRepo();
+          })(); 
+
+          
+       });
+     }).catch(e => {
       console.log(e);
-    });
-      showUserDetails();
+     });
+      showUserDetails();    
     });
   }
 }
+
 
 //Fetching API
 function fetchData(e) {
   if(e.keyCode === 13) {
     let data = fetch(`https://api.github.com/users/${userName.value}`).then(getData).
-    catch(() =>{
+    catch((e) =>{
+      console.log(e);
       console.log("Check your internet connection.");
     });
   }
