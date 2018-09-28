@@ -1,13 +1,15 @@
 let user;
 const userName = document.getElementById('user-value');
 const userBlock = document.querySelector('.show_user_details');
+const reposBlock  = document.querySelector('.repos_block');
 
 
 // function for appending details 
 const showUserDetails = () => {
   user.userDetails = function() {
     const fragment = document.createDocumentFragment();
-    const div = document.createElement("div");
+    const detailsDiv = document.createElement("div");
+    const reposDiv = document.createElement("div");
 
     let details = `
     <div class="user_image">
@@ -36,8 +38,17 @@ const showUserDetails = () => {
     </div>    
     `;
 
-    div.classList.add("details_block");
-    div.innerHTML = details;    fragment.appendChild(div);
+    // let reposElm = `
+    // <h3 class="repos_header">User Repositories</h3>
+    // <div class=""
+    // `
+
+    detailsDiv.classList.add("details_block");
+    detailsDiv.innerHTML = details;
+    reposDiv.innerHTML = reposElm;
+
+    fragment.appendChild(detailsDiv);
+    fragment.appendChild(reposDiv);
 
     userBlock.innerHTML = '';
     userBlock.appendChild(fragment);
@@ -54,6 +65,20 @@ function getData(response) {
   } else {
     return response.json().then(res => {
       user = res;
+      let repos = fetch(`https://api.github.com/users/${userName.value}/repos?per_page=100`).then(response => {
+      response.json().then(res => {
+        user.repos = [];
+        res.forEach(repo => {
+          let repoDetails = {
+            name : repo.name,
+            url : repo.html_url
+          };
+          user.repos.push(repoDetails);
+        }); 
+      });
+    }).catch(e => {
+      console.log(e);
+    });
       showUserDetails();
     });
   }
@@ -70,4 +95,3 @@ function fetchData(e) {
 }
 
 document.body.addEventListener('keypress', fetchData);
-
