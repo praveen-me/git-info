@@ -1,7 +1,7 @@
 let user;
 const userName = document.getElementById('user-value');
 const userBlock = document.querySelector('.show_user_details');
-const main  = document.querySelector('main');
+const reposBlock  = document.querySelector('.repos');
 let repoStr = '';
 
 // function for appending details 
@@ -60,12 +60,14 @@ const showRepo = () => {
       ${repoStr}
     </ul>
     `
+    reposBlock.innerHTML = '';
     repoDiv.classList.add("repos_block");
     repoDiv.innerHTML = str;
     
     fragment.appendChild(repoDiv);
+    reposBlock.appendChild(fragment);
 
-    main.appendChild(fragment);
+    repoStr = '';
   }
   user.showRepo();
 }
