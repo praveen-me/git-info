@@ -2,7 +2,9 @@ let user;
 const userName = document.getElementById('user-value');
 const userBlock = document.querySelector('.show_user_details');
 const reposBlock  = document.querySelector('.repos');
+const submitBtn = document.getElementById('submit');
 let repoStr = '';
+
 
 // function for appending details 
 const showUserDetails = () => {
@@ -16,7 +18,7 @@ const showUserDetails = () => {
     </div>
     <div class="show_details">
       <p class="show_name">
-      <span class="name_value">${this.name}</span>
+      <a  href="https://github.com/${userName.value}" class="name_value">${this.name}</a>
       </p>
       <p class="show_repos user_info">
         <span class="repos_head">Repositories : </span>
@@ -101,10 +103,9 @@ function getData(response) {
               `
             });
             showRepo();
-          })(); 
-
-          
+          })();          
        });
+       document.getElementById('user-value').value = '';
      }).catch(e => {
       console.log(e);
      });
@@ -115,14 +116,17 @@ function getData(response) {
 
 
 //Fetching API
-function fetchData(e) {
-  if(e.keyCode === 13) {
+function fetchData() {
     let data = fetch(`https://api.github.com/users/${userName.value}`).then(getData).
     catch((e) =>{
       console.log(e);
       console.log("Check your internet connection.");
     });
-  }
 }
 
-document.body.addEventListener('keypress', fetchData);
+document.body.addEventListener('keypress', (e) => {
+  if(e.keyCode === 13) {
+    fetchData();
+  }
+});
+submitBtn.addEventListener('click', fetchData);

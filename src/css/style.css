@@ -97,7 +97,8 @@ h1 {
 .details_block {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  width: 500px;
+  max-width: 500px;
+  width: 100%;
   margin: 0 auto;
   box-shadow: 7px 6px 14px 3px #d2cfcfd1;
   background-color: white;
@@ -108,13 +109,15 @@ h1 {
 .user_image {
   height: 200px; }
   .user_image img {
-    width: 200px; }
+    max-width: 200px;
+    width: 100%; }
 
 .show_name {
   margin: 1rem 0;
   font-size: 1.5rem;
-  font-variant: small-caps;
-  color: #33435a; }
+  font-variant: small-caps; }
+  .show_name a {
+    color: #33435a; }
 
 .user_info {
   font-size: 1.2rem;
@@ -128,5 +131,51 @@ h1 {
   font-weight: 300;
   color: #023a35;
   margin: 0 auto; }
+
+.repos_container {
+  max-width: 500px;
+  width: 100%;
+  margin: 2rem auto; }
+
+.repo_item {
+  padding: 0.5rem 0;
+  padding-left: 2rem;
+  font-size: 1.2rem;
+  background-color: #73cdd8; }
+  .repo_item:nth-child(even) {
+    background-color: #87dce6; }
+  .repo_item:hover {
+    box-shadow: inset 0px 0px 8px 0px #353333; }
+  .repo_item a {
+    color: #2c2a2f; }
+
+.submit {
+  margin: 1rem 0;
+  font-size: 1.2rem;
+  background-color: #023a35;
+  color: #fff;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 3px;
+  cursor: pointer;
+  display: none; }
+  .submit:hover {
+    background-color: #005f56; }
+
+@media screen and (max-width: 450px) {
+  .user_name, .user_value {
+    display: block;
+    margin: 1rem auto;
+    text-align: center; }
+
+  .submit {
+    display: inline-block; }
+
+  .details_block {
+    grid-template-columns: 1fr;
+    justify-items: center; }
+
+  .show_details p {
+    text-align: center; } }
 
 /*# sourceMappingURL=style.css.map */
