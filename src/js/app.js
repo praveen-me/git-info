@@ -3,6 +3,7 @@ const userName = document.getElementById('user-value');
 const userBlock = document.querySelector('.show_user_details');
 const reposBlock  = document.querySelector('.repos');
 const submitBtn = document.getElementById('submit');
+const form = document.querySelector('.user_details');
 let repoStr = '';
 
 
@@ -78,7 +79,7 @@ const showRepo = () => {
 function getData(response) {
   console.log(response.ok)
   if(!response.ok) {
-    console.log("User name is not correct");
+    alert("User name is not correct");
     return;
   } else {
     return response.json().then(res => {
@@ -124,7 +125,8 @@ function fetchData() {
     });
 }
 
-document.body.addEventListener('keypress', (e) => {
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
   if(e.keyCode === 13) {
     fetchData();
   }
