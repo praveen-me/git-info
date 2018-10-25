@@ -13,3 +13,15 @@ input {
 a {
   text-decoration: none;
 }
+
+.wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.middle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -25,11 +25,12 @@ header {
 
 .search-form {
   align-self: center;
-  padding: 0 2rem;
+  text-align: center;
   .search-value {
-    width: 100%;
+    width: 60%;
+    margin: 0 auto;
     border-radius: 5px;
-    border: 2px solid rgb(71, 71, 71);
+    border: 2px solid #474747;
     padding: 0.5rem 1rem;
     font-size: 1.2rem;
     &::placeholder {

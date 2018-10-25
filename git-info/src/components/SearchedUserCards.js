@@ -9,7 +9,7 @@ class SearchedUserCards extends Component {
           <img src={avatar_url} alt={login} className="searched-user-image"/>
         </div>
         <h2 className="searched-user-name">
-          <a href="#">{login}</a>
+          <a href="#" onClick={(e) => this.props.currentUser(e, login)}>{login}</a>
         </h2>
       </div>
     );
