@@ -1,0 +1,36 @@
+.searched-users-container {
+  font-family: 'Roboto', sans-serif;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 2rem;
+}
+
+.searched-user-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 3rem;
+}
+
+.image-container {
+  font-size: 0;
+  padding: 1rem;
+}
+
+.searched-user-image {
+  width: 100%;
+  font-size: 0;
+  border-radius: 10px;
+}
+
+.searched-user-name {
+  font-size: 1.3rem;
+  margin: 2rem 0;
+  a {
+    color: #000;
+    &:hover {
+      font-weight: 300;
+      color: #01524a;
+      text-decoration: underline;
+    }
+  }
+}
