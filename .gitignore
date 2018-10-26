@@ -1,3 +1,4 @@
 .sass-cache
 src/css/style.css.map
 src/scss/base.scss
+node_modules
