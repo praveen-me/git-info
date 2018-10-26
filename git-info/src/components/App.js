@@ -30,7 +30,8 @@ class App extends Component {
     then(data => {
       if(data.total_count === 0) {
         return this.setState({
-          error : true
+          error : true,
+          isLoading : false
         })
       } else {
         return this.setState({
