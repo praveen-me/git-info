@@ -10,7 +10,7 @@ class Main extends Component {
     if(Object.keys(currentUserDetails).length === 0) {
       displayItem = <SearchedUsersDisplay userSearched={userSearched} Error={Error} currentUser={currentUser}/>
     } else {
-      displayItem = <DisplayCurrentUser currentUserDetails={currentUserDetails}/>
+      displayItem = <DisplayCurrentUser currentUserDetails={currentUserDetails}currentUser={this.props.currentUser}/>
     }
 
     return (

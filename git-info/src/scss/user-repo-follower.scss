@@ -4,11 +4,13 @@
   grid-gap: 1rem;
 }
 
+//repo css
+
 .repos-container{
   padding-left: 1rem;
 }
 
-.repos-header {
+.repos-header, .followers-header  {
   font-size: 1.5rem;
   padding-left: 1rem;
   margin: 1rem 0;
@@ -16,7 +18,7 @@
 
 .repo-container {
   padding: 1rem 0;
-  padding-bottom: 2rem;
+  padding-bottom: 3.5rem;
   position: relative;
   border-bottom: 1px solid #ddd;
 }
@@ -41,4 +43,26 @@
 .repo-honour{
   font-weight: 300;
   margin: 0 0.5rem;
+}
+
+//follower css
+.follower-container {
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.follower-image {
+  width: 100px;
+}
+
+.follower-name-container {
+  vertical-align: top;
+  margin: 0 1rem;
+  font-size: 1.2rem;
+  a {
+    color: #000;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }

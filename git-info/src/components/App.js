@@ -47,7 +47,7 @@ class App extends Component {
   }
 
   render() {
-    const {searchedUsers, error, currentUserDetails, currentUserRepos} = this.state;
+    const {searchedUsers, error, currentUserDetails} = this.state;
 
     return (
       <div className="App">
