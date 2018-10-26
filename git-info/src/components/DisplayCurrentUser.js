@@ -5,13 +5,13 @@ import DisplayCurrentUserFollowers from './DisplayCurrentUserFollowers';
 
 class DisplayCurrentUser extends Component {
   render() {
-    const {currentUserDetails} = this.props;
+    const {currentUserDetails, currentUserRepos, currentUserFollowers} = this.props;
     return (
       <div className="DisplayCurrentUser wrapper">
         <DisplayCurrentUserInfo userInfo={currentUserDetails} />
         <div className="repos-follower-container">
-          <DisplayCurrentUserRepos userName={currentUserDetails.login}/>
-          <DisplayCurrentUserFollowers userName={currentUserDetails.login}currentUser={this.props.currentUser}/>
+          <DisplayCurrentUserRepos userRepos={currentUserRepos}/>
+          <DisplayCurrentUserFollowers userFollowers={currentUserFollowers}currentUser={this.props.currentUser}/>
         </div>
       </div>
     );

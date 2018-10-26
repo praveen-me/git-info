@@ -11,6 +11,8 @@ class App extends Component {
       searchedUsers : [],
       error : false,
       currentUserDetails : {},
+      currentUserRepos : {}, 
+      currentUserFollowers : {}
     }
   }
   
@@ -30,7 +32,8 @@ class App extends Component {
         return this.setState({
           searchedUsers : data.items,
           error : false,
-          currentUserDetails : {},
+          currentUserDetails : {}, currentUserRepos : {}, 
+          currentUserFollowers : {}
         })
       }
     });
@@ -44,15 +47,26 @@ class App extends Component {
     then(data => this.setState({
       currentUserDetails : data
     }))
+    fetch(`https://api.github.com/users/${login}/repos?per_page=10`).
+    then(res => res.json()).
+    then(data => this.setState({
+      currentUserRepos : data
+    }))
+    fetch(`https://api.github.com/users/${login}/followers?per_page=10`).
+    then(res => res.json()).
+    then(data => this.setState({
+      currentUserFollowers : data
+    }))
   }
 
   render() {
-    const {searchedUsers, error, currentUserDetails} = this.state;
+    const {searchedUsers, error, currentUserDetails, currentUserRepos, currentUserFollowers} = this.state;
 
     return (
       <div className="App">
        <Header onSubmit={this.handleSubmit}/>
-       <Main userSearched={searchedUsers} Error={error} currentUser={this.handleCurrentUser} currentUserDetails={currentUserDetails}/>
+       <Main userSearched={searchedUsers} Error={error} currentUser={this.handleCurrentUser} currentUserDetails={currentUserDetails}currentUserRepos={currentUserRepos}
+       currentUserFollowers={currentUserFollowers}/>
        {/* <Loader /> */}
       </div>
     );

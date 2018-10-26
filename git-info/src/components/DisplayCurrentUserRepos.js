@@ -1,27 +1,20 @@
 import React, { Component } from 'react';
 import RepoCard from './RepoCard';
 
-class DisplayCurrentUserRepos extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userRepos : []
-    }
-  }
-
-  componentWillMount() {
-    const {userName}= this.props;
-
-    fetch(`https://api.github.com/users/${userName}/repos?per_page=10`)
-      .then(res => res.json())
-      .then(data => 
-        this.setState({
-          userRepos : data
-        }))
-  }
-  
+class DisplayCurrentUserRepos extends Component {  
   render() {
-    const {userRepos} = this.state;
+    const {userRepos}= this.props;
+    let item;
+
+    if(userRepos.length > 0) {
+      item = userRepos.map(repo => (
+          <RepoCard repo={repo}/>
+        ))
+    } else {
+      item = "No Repos"
+    }
+
+
     return (
       <div className="CurrentUserRepos">
         <div className="repo-header-container">
@@ -29,9 +22,7 @@ class DisplayCurrentUserRepos extends Component {
         </div>
         <div className="repos-container">
           {
-            userRepos.map(repo => (
-              <RepoCard repo={repo}/>
-            ))
+            item
           }
         </div>
       </div>

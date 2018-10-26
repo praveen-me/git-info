@@ -2,27 +2,19 @@ import React, { Component } from 'react';
 import FollowerCard from './FollowerCard';
 
 class DisplayCurrentUserFollowers extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userFollowers : []
-    }
-  }
-
-  componentWillMount() {
-    const {userName}= this.props;
-
-    fetch(`https://api.github.com/users/${userName}/followers?per_page=10`)
-      .then(res => res.json())
-      .then(data => 
-        this.setState({
-          userFollowers : data
-        }))
-  }
-  
-
   render() { 
-    const {userFollowers} = this.state; 
+    const {userFollowers}= this.props;
+
+    let item;
+
+    if(userFollowers.length > 0) {
+      item =  userFollowers.map(follower => (
+              <FollowerCard follower={follower} currentUser={this.props.currentUser}/>
+              ))
+    } else {
+      item = "No followers"
+    }
+
     return (
       <div className="CurrentUserFollowers">
         <div className="followers-header-container">
@@ -30,9 +22,7 @@ class DisplayCurrentUserFollowers extends Component {
         </div>
         <div className="followers-container">
           {
-            userFollowers.map(follower => (
-              <FollowerCard follower={follower} currentUser={this.props.currentUser}/>
-            ))
+           item
           }
         </div>
       </div>
