@@ -1,25 +1,36 @@
+* {
+  box-sizing: border-box;
+}
+
+.inline {
+  display: inline-block;
+}
+
+input {
+  font-family: 'Roboto', sans-serif;
+}
+
 a {
   text-decoration: none;
 }
 
-img {
-  height: 100%;
-  width: 100%;
+.wrapper {
+  max-width: 960px;
+  margin: 0 auto;
 }
 
-.wrapper {
-  max-width : 960px;
+.middle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+img {
   width : 100%;
-  margin : 2rem auto;
+  border-radius: 5px;
 }
 
 .center {
-  text-align : center;
-}
-
-.right {
-  text-align: right;
-}
-.color-white {
-  color: #fff;
+  text-align: center;
 }
