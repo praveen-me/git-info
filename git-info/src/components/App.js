@@ -20,6 +20,10 @@ class App extends Component {
     console.log(userName);
     e.preventDefault();
 
+    this.setState({
+      isLoading : true
+    })
+
     fetch(`https://api.github.com/search/users?q=${userName}`).
     then(res => res.json())
     .
@@ -32,6 +36,7 @@ class App extends Component {
         return this.setState({
           searchedUsers : data.items,
           error : false,
+          isLoading : false,
           currentUserDetails : {}, currentUserRepos : {}, 
           currentUserFollowers : {}
         })
@@ -42,6 +47,11 @@ class App extends Component {
   }
 
   handleCurrentUser = (e, login) => {
+
+    this.setState({
+      isLoading : true
+    })
+
     fetch(`https://api.github.com/users/${login}`).
     then(res => res.json()).
     then(data => this.setState({
@@ -55,19 +65,25 @@ class App extends Component {
     fetch(`https://api.github.com/users/${login}/followers?per_page=10`).
     then(res => res.json()).
     then(data => this.setState({
-      currentUserFollowers : data
+      currentUserFollowers : data,
+      isLoading : false
     }))
   }
 
   render() {
-    const {searchedUsers, error, currentUserDetails, currentUserRepos, currentUserFollowers} = this.state;
+    const {searchedUsers, error, currentUserDetails, currentUserRepos, currentUserFollowers, isLoading} = this.state;
 
     return (
       <div className="App">
        <Header onSubmit={this.handleSubmit}/>
-       <Main userSearched={searchedUsers} Error={error} currentUser={this.handleCurrentUser} currentUserDetails={currentUserDetails}currentUserRepos={currentUserRepos}
-       currentUserFollowers={currentUserFollowers}/>
-       {/* <Loader /> */}
+       {
+        this.state.isLoading ? 
+        <Loader />
+          :
+        <Main userSearched={searchedUsers} Error={error} currentUser={this.handleCurrentUser} currentUserDetails={currentUserDetails}currentUserRepos={currentUserRepos}
+        currentUserFollowers={currentUserFollowers}
+        isLoading={isLoading}/>
+       }
       </div>
     );
   }
