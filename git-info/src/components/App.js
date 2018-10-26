@@ -11,8 +11,6 @@ class App extends Component {
       searchedUsers : [],
       error : false,
       currentUserDetails : {},
-      currentUserRepos : {},
-      currentUserFollowers: {}
     }
   }
   
@@ -33,8 +31,6 @@ class App extends Component {
           searchedUsers : data.items,
           error : false,
           currentUserDetails : {},
-          currentUserRepos : {},
-          currentUserFollowers: {}
         })
       }
     });
@@ -48,27 +44,17 @@ class App extends Component {
     then(data => this.setState({
       currentUserDetails : data
     }))
-    fetch(`https://api.github.com/users/${login}/repos`).
-    then(res => res.json()).
-    then(data => this.setState({
-      currentUserRepos : data
-    }))
-    fetch(`https://api.github.com/users/${login}/followers`).
-    then(res => res.json()).
-    then(data => this.setState({
-      currentUserFollowers : data
-    }))
   }
 
   render() {
-    const {searchedUsers, error, currentUserDetails} = this.state;
+    const {searchedUsers, error, currentUserDetails, currentUserRepos} = this.state;
 
     return (
-      <React.Fragment>
+      <div className="App">
        <Header onSubmit={this.handleSubmit}/>
        <Main userSearched={searchedUsers} Error={error} currentUser={this.handleCurrentUser} currentUserDetails={currentUserDetails}/>
        {/* <Loader /> */}
-      </React.Fragment>
+      </div>
     );
   }
 }

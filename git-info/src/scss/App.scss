@@ -2,4 +2,10 @@
 
 @import './base.scss';
 @import './Header.scss';
-@import './searchedUsers.scss'
+@import './searchedUsers.scss';
+@import './CurrentUserInfo.scss';
+@import './userRepo.scss';
+
+.App {
+  font-family: 'Roboto', sans-serif;
+}

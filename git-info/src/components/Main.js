@@ -4,8 +4,8 @@ import DisplayCurrentUser from './DisplayCurrentUser';
 
 class Main extends Component {
   render() {
-    const {userSearched, Error, currentUser, currentUserDetails} = this.props;
-    console.log(currentUserDetails);
+    const {userSearched, Error, currentUser, currentUserDetails, currentUserRepos} = this.props;
+
     let displayItem;
     if(Object.keys(currentUserDetails).length === 0) {
       displayItem = <SearchedUsersDisplay userSearched={userSearched} Error={Error} currentUser={currentUser}/>
